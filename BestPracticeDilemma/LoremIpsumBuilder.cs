@@ -29,7 +29,7 @@ namespace BestPracticeDilemma
 
     public class LoremIpsumBuilder
     {
-        private string[] words = new string[] { "consetetur", "sadipscing", "elitr", "sed", "diam", "nonumy", "eirmod",
+        private string[] latainWords = new string[] { "consetetur", "sadipscing", "elitr", "sed", "diam", "nonumy", "eirmod",
     "tempor", "invidunt", "ut", "labore", "et", "dolore", "magna", "aliquyam", "erat", "sed", "diam", "voluptua",
     "at", "vero", "eos", "et", "accusam", "et", "justo", "duo", "dolores", "et", "ea", "rebum", "stet", "clita",
     "kasd", "gubergren", "no", "sea", "takimata", "sanctus", "est", "lorem", "ipsum", "dolor", "sit", "amet",
@@ -75,7 +75,6 @@ namespace BestPracticeDilemma
     "diam", "voluptua", "at", "vero", "eos", "et", "accusam", "et", "justo", "duo", "dolores", "et", "ea",
     "rebum", "stet", "clita", "kasd", "gubergren", "no", "sea", "takimata", "sanctus", "est", "lorem", "ipsum" };
 
-        private const string ORIGINALTEXT = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         private readonly List<string> _arrOriginal = new List<string>();
 
         /// <summary>
@@ -83,13 +82,12 @@ namespace BestPracticeDilemma
         /// </summary>
         public LoremIpsumBuilder()
         {
-            string[] arrText = ORIGINALTEXT.Split(' ');
-            _arrOriginal = new List<string>(arrText);
+            _arrOriginal = new List<string>(latainWords);
         }
 
         public string GetChars()
         {
-            return this.GetWords(ORIGINALTEXT.Length);
+            return this.GetWords(latainWords.Length);
         }
 
         public string GetWords(int length)
@@ -98,27 +96,34 @@ namespace BestPracticeDilemma
 
             if (length == 0)
             {
-                length = ORIGINALTEXT.Length; 
+                length = latainWords.Length; 
             }
 
             for (var i = 0; i < length; i++)
             {
-                output.Append(ORIGINALTEXT[i]);
+                output.Append(latainWords[i]);
             }
 
             return output.ToString();
         }
 
-        public string GetParagraphs(int count)
+        public string GetParagraphs(int countLines, int countWords)
         {
+            IEnumerable<string> randomList = latainWords.OrderBy(x => Guid.NewGuid()).Take(countWords);
+
             var output = new StringBuilder();
-            for (int i = 0; i <= count; i++)
+            for (int i = 0; i <= countLines; i++)
             {
-                if (i == count)
-                    output.Append(ORIGINALTEXT);
+                if (i == countLines)
+                {
+                    output.Append(string.Join(" ", randomList));
+                }
                 else
-                    output.Append(ORIGINALTEXT + "\n\n");
+                {
+                    output.AppendLine(string.Join(" ", randomList) + Environment.NewLine);
+                }
             }
+
             return output.ToString();
         }
     }

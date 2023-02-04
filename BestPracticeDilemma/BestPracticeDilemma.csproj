@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <AssemblyVersion>1.0.2023.1</AssemblyVersion>
-    <FileVersion>1.0.2023.1</FileVersion>
+    <AssemblyVersion>1.0.2023.2</AssemblyVersion>
+    <FileVersion>1.0.2023.2</FileVersion>
     <Description>Demo Programm zum entfernen von Leerszeichen aus einem String</Description>
   </PropertyGroup>
 

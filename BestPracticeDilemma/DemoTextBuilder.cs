@@ -17,7 +17,7 @@ namespace BestPracticeDilemma
 {
     using System.Text;
 
-    public class DemoTextGenerator
+    public class DemoTextBuilder
     {
         public static List<string> GenerateStrings(int txtCount, int txtLength)
         {
@@ -31,33 +31,6 @@ namespace BestPracticeDilemma
             }
 
             return strings;
-        }
-
-        public static string LoremIpsum(int minWords, int maxWords, int minSentences, int maxSentences, int numLines)
-        {
-            var words = new[] { "lorem", "ipsum", "dolor", "sit", "amet", "consectetuer", "adipiscing", "elit", "sed", "diam", "nonummy", "nibh", "euismod", "tincidunt", "ut", "laoreet", "dolore", "magna", "aliquam", "erat" };
-
-            var rand = new Random();
-            int numSentences = rand.Next(maxSentences - minSentences) + minSentences + 1;
-            int numWords = rand.Next(maxWords - minWords) + minWords + 1;
-            var sb = new StringBuilder();
-            for (int p = 0; p < numLines; p++)
-            {
-                for (int s = 0; s < numSentences; s++)
-                {
-                    for (int w = 0; w < numWords; w++)
-                    {
-                        if (w > 0) { sb.Append(" "); }
-                        sb.Append(words[rand.Next(words.Length)]);
-                    }
-
-                    sb.Append(". ");
-                }
-
-                sb.AppendLine();
-            }
-
-            return sb.ToString();
         }
 
         private static string GenerateString(int len)

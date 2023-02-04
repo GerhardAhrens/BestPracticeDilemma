@@ -12,5 +12,7 @@ Hierzu ein Beispiel:
 Aufgabe ist es, eine Lösung zu finden, bei der alle Leerzeichen aus einen Text entfernt werden kann.
 Die Lösung soll in C# mit einem dazu passendem Benchmark umgesetzt werden.
 
+Die Beispiele zeigen verschiedene Lösungen, die alle die Aufgabe erfüllen, aber auch ihre spezifischen Probleme aufweisen.
+
 
 https://www.markdownguide.org/cheat-sheet/

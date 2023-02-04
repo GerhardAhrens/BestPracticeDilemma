@@ -77,8 +77,8 @@ namespace BestPracticeDilemma
         public static string TrimAllWithStringReplace(string str)
         {
             /*
-             * Diese Methode ist funktionell NICHT gleichwertig mit den anderen, da sie nur "leer" trimmt. 
-             * ASCII-Zeichen und Leerzeichen umfassen viele andere Zeichen
+             * Diese Methode ist funktionell NICHT gleichwertig mit den anderen, da sie nur " " (string.Empty) trimmt. 
+             * ASCII-Zeichen und Leerzeichen umfassen viele andere zusätzliche Zeichen
              */
             return str.Replace(" ", "");
         }

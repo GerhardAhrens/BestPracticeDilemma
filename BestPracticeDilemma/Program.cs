@@ -100,7 +100,7 @@ namespace BestPracticeDilemma
 
         private static void Execute(Action method, string name, bool all = false)
         {
-            demoStrings = DemoTextGenerator.GenerateStrings(10000,1024);
+            demoStrings = DemoTextBuilder.GenerateStrings(10000,1024);
             long sum = demoStrings.Sum(s => s.Length);
 
             Stopwatch watch = new Stopwatch();
@@ -115,18 +115,22 @@ namespace BestPracticeDilemma
 
             if (all == false)
             {
-                Console.WriteLine($"Name={name.PadRight(25)};Elapsed={elapsed.ToString("N0").PadLeft(5)} ms; Anzahl Zeichen:{sum}");
+                Console.WriteLine($"Name={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
                 Console.ReadKey();
             }
             else
             {
-                Console.WriteLine($"Name={name.PadRight(25)};Elapsed={elapsed.ToString("N0").PadLeft(5)} ms; Anzahl Zeichen:{sum}");
+                Console.WriteLine($"Name={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
             }
         }
 
         private static void BenchmarkAll()
         {
             Console.Clear();
+            demoStrings = DemoTextBuilder.GenerateStrings(10000, 1024);
+            long sumChar = demoStrings.Sum(s => s.Length);
+            Console.WriteLine($"Anzahl der Zeichen: {sumChar}");
+            Console.WriteLine("");
 
             BenchmarkSplitAndConcat(true);
             BenchmarkTrimAllWithRegex(true);
