@@ -37,8 +37,10 @@ Das Dilemma besteht nun darin, zwischen den verschiedenen Varianten für
 * Lesbarkeit
 * Sicherheit (unsafe)
 
-auszuwählen.
+auszuwählen. Die verschiedene Varianten stellen für die Aufgabe unterschiedliche Lösungen zu Verfügung.
 
 <img src="./TrimVarianten.png" style="width:400px;"/>
 
-Bild
+Die Tabelle zeigt die verschiedenen Varianten mit ihren Ausführungszeiten. Die Auswirkungen der verschiedenen Varianten wird
+ am besten bei einer hohen Anzahl von Zeichen deutlich.
+

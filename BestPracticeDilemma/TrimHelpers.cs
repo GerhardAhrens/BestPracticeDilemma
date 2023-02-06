@@ -80,7 +80,7 @@ namespace BestPracticeDilemma
              * Diese Methode ist funktionell NICHT gleichwertig mit den anderen, da sie nur " " (string.Empty) trimmt. 
              * ASCII-Zeichen und Leerzeichen umfassen viele andere zusätzliche Zeichen
              */
-            return str.Replace(" ", "");
+            return str.Replace(" ", string.Empty);
         }
 
         public static string TrimAllWithCharArrayCopy(string str)

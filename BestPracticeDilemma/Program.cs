@@ -102,9 +102,33 @@ namespace BestPracticeDilemma
             while (true);
         }
 
+        private static void BenchmarkAll()
+        {
+            Console.Clear();
+            demoStrings = DemoTextBuilder.GenerateStrings(10000, 1024);
+            long sumChar = demoStrings.Sum(s => s.Length);
+            Console.WriteLine($"\tAnzahl der Zeichen: {sumChar.ToString("N0")}");
+            Console.WriteLine("");
+
+            BenchmarkSplitAndConcat(true);
+            BenchmarkTrimAllWithRegex(true);
+            BenchmarkLinq(true);
+            BenchmarkStringReplace(true);
+            BenchmarkArrayCopy(true);
+            BenchmarkTrimAllWithInplaceCharArray(true);
+            BenchmarkTrimAllWithStringUnsafeInplaceV1(true);
+            BenchmarkTrimAllWithStringUnsafeInplaceV2(true);
+            BenchmarkTrimAllWithLexerLoop(true);
+            BenchmarkTrimAllWithLexerLoopCharIsWhitespce(true);
+
+            Console.WriteLine("\t");
+            Console.WriteLine("\tEine Taste für zurück drücken.");
+            Console.ReadKey();
+        }
+
         private static void Execute(Action method, string name, bool all = false)
         {
-            demoStrings = DemoTextBuilder.GenerateStrings(10000,1024);
+            demoStrings = DemoTextBuilder.GenerateStrings(10000, 1024);
             long sum = demoStrings.Sum(s => s.Length);
 
             Stopwatch watch = new Stopwatch();
@@ -119,35 +143,15 @@ namespace BestPracticeDilemma
 
             if (all == false)
             {
-                Console.WriteLine($"\tName={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
+                Console.WriteLine($"\tName = {name.PadRight(25)} Elapsed = {elapsed.ToString("N0").PadLeft(5)} ms");
+                Console.WriteLine("\t");
+                Console.WriteLine("\tEine Taste für zurück drücken.");
                 Console.ReadKey();
             }
             else
             {
-                Console.WriteLine($"\tName={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
+                Console.WriteLine($"\tName = {name.PadRight(25)} Elapsed = {elapsed.ToString("N0").PadLeft(5)} ms");
             }
-        }
-
-        private static void BenchmarkAll()
-        {
-            Console.Clear();
-            demoStrings = DemoTextBuilder.GenerateStrings(10000, 1024);
-            long sumChar = demoStrings.Sum(s => s.Length);
-            Console.WriteLine($"\tAnzahl der Zeichen: {sumChar}");
-            Console.WriteLine("");
-
-            BenchmarkSplitAndConcat(true);
-            BenchmarkTrimAllWithRegex(true);
-            BenchmarkLinq(true);
-            BenchmarkStringReplace(true);
-            BenchmarkArrayCopy(true);
-            BenchmarkTrimAllWithInplaceCharArray(true);
-            BenchmarkTrimAllWithStringUnsafeInplaceV1(true);
-            BenchmarkTrimAllWithStringUnsafeInplaceV2(true);
-            BenchmarkTrimAllWithLexerLoop(true);
-            BenchmarkTrimAllWithLexerLoopCharIsWhitespce(true);
-
-            Console.ReadKey();
         }
 
         #region TrimAllWithSplitAndConcat
