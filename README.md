@@ -26,8 +26,8 @@ Auch nicht jede Variante führt zum gewünschtem Ergebnis.
 | --------------- | ---------- |
 | STRING.REPLACE  | 39         |
 
-```
-return str.Replace(" ", "");
+```csharp
+return str.Replace(" ", string.Empty);
 ```
 Diese Variante berücksichtig nur einfache Leerzeichen (String.Empty), dass aber nicht immer so gewünscht ist.
 
@@ -39,4 +39,6 @@ Das Dilemma besteht nun darin, zwischen den verschiedenen Varianten für
 
 auszuwählen.
 
+<img src="./TrimVarianten.png" style="width:400px;"/>
 
+Bild
