@@ -14,5 +14,29 @@ Die Lösung soll in C# mit einem dazu passendem Benchmark umgesetzt werden.
 
 Die Beispiele zeigen verschiedene Lösungen, die alle die Aufgabe erfüllen, aber auch ihre spezifischen Probleme aufweisen.
 
+| Variante       | Zeit in ms |
+| -------------- | ---------- |
+| STRING.REPLACE | 39         |
+| LINQ           | 355        |
 
-https://www.markdownguide.org/cheat-sheet/
+Die Werte sind von der Umgebung und dem PC abhängig, zu sehen ist aber, das es hier Werte gibt, die stark von einander abweichen.
+Auch nicht jede Variante führt zum gewünschtem Ergebnis.
+
+| Variante        | Zeit in ms |
+| --------------- | ---------- |
+| STRING.REPLACE  | 39         |
+
+```
+return str.Replace(" ", "");
+```
+Diese Variante berücksichtig nur einfache Leerzeichen (String.Empty), dass aber nicht immer so gewünscht ist.
+
+Das Dilemma besteht nun darin, zwischen den verschiedenen Varianten für
+
+* Performance
+* Lesbarkeit
+* Sicherheit (unsafe)
+
+auszuwählen.
+
+

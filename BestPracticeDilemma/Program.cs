@@ -25,23 +25,27 @@ namespace BestPracticeDilemma
 
         private static void Main(string[] args)
         {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor= ConsoleColor.DarkBlue;
+
             do
             {
                 Console.Clear();
-                Console.WriteLine("1. TrimAllWithSplitAndConcat");
-                Console.WriteLine("2. TrimAllWithRegex");
-                Console.WriteLine("3. TrimAllWithStringReplace");
-                Console.WriteLine("4. TrimAllWithLinq");
-                Console.WriteLine("5. TrimAllWithArrayCopy");
-                Console.WriteLine("6. TrimAllWithInplaceCharArray");
-                Console.WriteLine("7. TrimAllWithStringUnsafeInplace V1");
-                Console.WriteLine("8. TrimAllWithStringUnsafeInplace V2");
-                Console.WriteLine("A. TrimAllWithLexerLoop");
-                Console.WriteLine("B. TrimAllWithLexerLoopCharIsWhitespce");
-                Console.WriteLine("C. Alle Benchmark ausführen");
-                Console.WriteLine("X. Beenden");
+                Console.WriteLine("\t1. TrimAllWithSplitAndConcat");
+                Console.WriteLine("\t2. TrimAllWithRegex");
+                Console.WriteLine("\t3. TrimAllWithStringReplace");
+                Console.WriteLine("\t4. TrimAllWithLinq");
+                Console.WriteLine("\t5. TrimAllWithArrayCopy");
+                Console.WriteLine("\t6. TrimAllWithInplaceCharArray");
+                Console.WriteLine("\t7. TrimAllWithStringUnsafeInplace V1");
+                Console.WriteLine("\t8. TrimAllWithStringUnsafeInplace V2");
+                Console.WriteLine("\tA. TrimAllWithLexerLoop");
+                Console.WriteLine("\tB. TrimAllWithLexerLoopCharIsWhitespce");
+                Console.WriteLine("\tC. Alle Benchmark ausführen");
+                Console.WriteLine("\tX. Beenden");
 
-                Console.WriteLine("Wählen Sie einen Menüpunkt oder 'x' für beenden");
+                Console.WriteLine("\tWählen Sie einen Menüpunkt oder 'x' für beenden");
                 ConsoleKey key = Console.ReadKey(true).Key;
                 if (key == ConsoleKey.X)
                 {
@@ -115,12 +119,12 @@ namespace BestPracticeDilemma
 
             if (all == false)
             {
-                Console.WriteLine($"Name={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
+                Console.WriteLine($"\tName={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
                 Console.ReadKey();
             }
             else
             {
-                Console.WriteLine($"Name={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
+                Console.WriteLine($"\tName={name.PadRight(25)}|Elapsed={elapsed.ToString("N0").PadLeft(5)} ms");
             }
         }
 
@@ -129,7 +133,7 @@ namespace BestPracticeDilemma
             Console.Clear();
             demoStrings = DemoTextBuilder.GenerateStrings(10000, 1024);
             long sumChar = demoStrings.Sum(s => s.Length);
-            Console.WriteLine($"Anzahl der Zeichen: {sumChar}");
+            Console.WriteLine($"\tAnzahl der Zeichen: {sumChar}");
             Console.WriteLine("");
 
             BenchmarkSplitAndConcat(true);
@@ -151,18 +155,11 @@ namespace BestPracticeDilemma
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithSplitAndConcat(s);
+                    string result = TrimHelpers.TrimAllWithSplitAndConcat(demoString);
                 }
             }, "SPLIT AND CONCAT", all);
-        }
-
-        private static void TrimAllWithSplitAndConcat(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithSplitAndConcat(demoText);
-            int lengthAfter = result.Length;
         }
         #endregion TrimAllWithSplitAndConcat
 
@@ -171,18 +168,11 @@ namespace BestPracticeDilemma
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithRegex(s);
+                    string result = TrimHelpers.TrimAllWithRegex(demoString);
                 }
             }, "REGEX", all);
-        }
-
-        private static void TrimAllWithRegex(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithRegex(demoText);
-            int lengthAfter = result.Length;
         }
         #endregion TrimAllWithRegex
 
@@ -191,18 +181,11 @@ namespace BestPracticeDilemma
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithLinq(s);
+                    string result = TrimHelpers.TrimAllWithLinq(demoString);
                 }
             }, "LINQ",all);
-        }
-
-        public static void TrimAllWithLinq(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithLinq(demoText);
-            int lengthAfter = result.Length;
         }
 
         #endregion TrimAllWithLinq
@@ -212,19 +195,13 @@ namespace BestPracticeDilemma
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithStringReplace(s);
+                    string result = TrimHelpers.TrimAllWithStringReplace(demoString);
                 }
             }, "STRING.REPLACE",all);
         }
 
-        private static void TrimAllWithStringReplace(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithStringReplace(demoText);
-            int lengthAfter = result.Length;
-        }
         #endregion TrimAllWithStringReplace
 
         #region TrimAllWithArrayCopy
@@ -232,97 +209,64 @@ namespace BestPracticeDilemma
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithArrayCopy(s);
+                    TrimHelpers.TrimAllWithCharArrayCopy(demoString);
                 }
             }, "ARRAY.COPY",all);
         }
 
-        private static void TrimAllWithArrayCopy(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithStringReplace(demoText);
-            int lengthAfter = result.Length;
-        }
         #endregion TrimAllWithStringReplace
 
         #region TrimAllWithInplaceCharArray
-
-        private static void TrimAllWithInplaceCharArray(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithInplaceCharArray(demoText);
-            int lengthAfter = result.Length;
-        }
 
         private static void BenchmarkTrimAllWithInplaceCharArray(bool all = false)
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithInplaceCharArray(s);
+                    string result = TrimHelpers.TrimAllWithInplaceCharArray(demoString);
                 }
             }, "INPLACE CHAR ARRAY",all);
         }
         #endregion TrimAllWithInplaceCharArray
 
         #region TrimAllWithStringUnsafeInplaceV1
-        private static void TrimAllWithStringUnsafeInplaceV1(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithStringUnsafeInplace(demoText);
-            int lengthAfter = result.Length;
-        }
-
         private static void BenchmarkTrimAllWithStringUnsafeInplaceV1(bool all = false)
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithStringUnsafeInplaceV1(s);
+                    string result = TrimHelpers.TrimAllWithStringUnsafeInplaceV1(demoString);
                 }
             }, "STRING UNSAFE INPLACE V1", all);
         }
         #endregion TrimAllWithStringUnsafeInplaceV1
 
         #region TrimAllWithStringUnsafeInplaceV2
-        private static void TrimAllWithStringUnsafeInplaceV2(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithStringUnsafeInplaceV2(demoText);
-            int lengthAfter = result.Length;
-        }
 
         private static void BenchmarkTrimAllWithStringUnsafeInplaceV2(bool all = false)
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithStringUnsafeInplaceV2(s);
+                    string result = TrimHelpers.TrimAllWithStringUnsafeInplaceV2(demoString);
                 }
             }, "STRING UNSAFE INPLACE V2", all);
         }
         #endregion TrimAllWithStringUnsafeInplaceV2
 
         #region TrimAllWithLexerLoop
-        private static void TrimAllWithLexerLoop(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithLexerLoop(demoText);
-            int lengthAfter = result.Length;
-        }
-
         private static void BenchmarkTrimAllWithLexerLoop(bool all = false)
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithLexerLoop(s);
+                    string result = TrimHelpers.TrimAllWithLexerLoop(demoString);
                 }
             }, "LEXERLOOP SWITCH", all);
         }
@@ -330,20 +274,14 @@ namespace BestPracticeDilemma
         #endregion TrimAllWithLexerLoop
 
         #region TrimAllWithLexerLoopCharIsWhitespce
-        private static void TrimAllWithLexerLoopCharIsWhitespce(string demoText)
-        {
-            int lengthBefore = demoText.Length;
-            string result = TrimHelpers.TrimAllWithLexerLoopCharIsWhitespce(demoText);
-            int lengthAfter = result.Length;
-        }
 
         private static void BenchmarkTrimAllWithLexerLoopCharIsWhitespce(bool all = false)
         {
             Execute(() =>
             {
-                foreach (var s in demoStrings)
+                foreach (var demoString in demoStrings)
                 {
-                    TrimAllWithLexerLoopCharIsWhitespce(s);
+                    string result = TrimHelpers.TrimAllWithLexerLoopCharIsWhitespce(demoString);
                 }
             }, "LEXERLOOP CHAR", all);
         }

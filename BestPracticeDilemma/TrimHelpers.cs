@@ -183,7 +183,7 @@ namespace BestPracticeDilemma
             return result;
         }
 
-        public static unsafe string TrimAllWithStringUnsafeInplace(string str)
+        public static unsafe string TrimAllWithStringUnsafeInplaceV1(string str)
         {
             fixed (char* pfixed = str)
             {
